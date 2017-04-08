@@ -44,6 +44,8 @@ import java.util.List;
 /**
  * Created by jinhui  on 2017/4/8
  * 邮箱: 1004260403@qq.com
+ *
+ * 本demo并没有加入第三方库，具体如何实现的，就仔细体会各部分的代码实现吧】
  */
 public class MainActivity extends Activity {
 
@@ -74,6 +76,7 @@ public class MainActivity extends Activity {
     private AnimationDrawable animationDrawable;
     private FrameLayout about_fl;
     private View about_bg;
+    // 本地数据库对象
     private DNoteDB dNoteDB;
 
     private RelativeLayout send_rl;
@@ -109,10 +112,10 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
-        this.initView();
+        // 初始化组件
+        initView();
         listPage();
     }
 
@@ -144,7 +147,6 @@ public class MainActivity extends Activity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if (edittext_note.isShown()) {
                     if (hasFocus) {
                         noteEditState();
@@ -162,7 +164,6 @@ public class MainActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
-                // TODO Auto-generated method stub
                 noteModel.setFav(isChecked);
             }
         });
@@ -210,7 +211,6 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 edittext_search.setText("");
             }
         });
@@ -218,7 +218,6 @@ public class MainActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
                 String searchStr = s.toString();
                 if (s != null && s.length() > 0) {
                     imageview_delete.setVisibility(View.VISIBLE);
@@ -236,13 +235,11 @@ public class MainActivity extends Activity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
-                // TODO Auto-generated method stub
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
 
             }
         });
@@ -494,25 +491,21 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void onAnimationStart(Animation animation) {
-                        // TODO Auto-generated method stub
 
                     }
 
                     @Override
                     public void onAnimationRepeat(Animation animation) {
-                        // TODO Auto-generated method stub
 
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        // TODO Auto-generated method stub
                         delete_image
                                 .setImageResource(R.drawable.batch_delete_back);
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 

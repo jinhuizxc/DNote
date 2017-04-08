@@ -1,5 +1,8 @@
 package com.example.jh.dnote.dnote.data;
 
+/**
+ * 定义一些静态常量
+ */
 public class ConstantData {
 	public static final int EDIT_STATE = 1;
 	public static final int INFOR_DIALOG = 2;

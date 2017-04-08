@@ -4,33 +4,30 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
-public class MyHideAnimationListener implements AnimationListener
-{
-	private View[] views;
-	public MyHideAnimationListener(View[] views)
-	{
-		this.views = views;
-	}
+public class MyHideAnimationListener implements AnimationListener {
 
-	@Override
-	public void onAnimationStart(Animation animation) {
-		// TODO Auto-generated method stub
-		
-	}
+    private View[] views;
 
-	@Override
-	public void onAnimationEnd(Animation animation) {
-		// TODO Auto-generated method stub
-		for (View view : views) {
-			view.clearAnimation();
-			view.setVisibility(View.GONE);
-		}
+    public MyHideAnimationListener(View[] views) {
+        this.views = views;
+    }
 
-	}
+    @Override
+    public void onAnimationStart(Animation animation) {
 
-	@Override
-	public void onAnimationRepeat(Animation animation) {
-		// TODO Auto-generated method stub
-	}
-	
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+        for (View view : views) {
+            view.clearAnimation();
+            view.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+    }
+
 }

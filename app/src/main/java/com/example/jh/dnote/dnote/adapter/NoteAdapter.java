@@ -18,25 +18,24 @@ import java.util.List;
 /**
  * Created by jinhui  on 2017/4/8
  * 邮箱: 1004260403@qq.com
+ *
+ * 1. 实现了listview_lib.DragSortListView的DropListener接口
  */
 
-public class NoteAdapter extends ArrayAdapter<NoteModel> implements DragSortListView.DropListener{
+public class NoteAdapter extends ArrayAdapter<NoteModel> implements DragSortListView.DropListener {
 
 
     private int resourceId;
 
     private List<NoteModel> objects;
 
-    public NoteAdapter(Context context, int resource,
-                       List<NoteModel> objects) {
+    public NoteAdapter(Context context, int resource, List<NoteModel> objects) {
         super(context, resource, objects);
-        // TODO Auto-generated constructor stub
         this.objects = objects;
         resourceId = resource;
     }
 
-    public void setUp()
-    {
+    public void setUp() {
         for (NoteModel object : objects) {
             object.setIsUp(true);
         }
@@ -45,19 +44,16 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> implements DragSortList
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return super.getCount();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
 
         NoteModel noteModel = getItem(position);
         View view;
         ViewHolder viewHolder;
-        if(convertView == null)
-        {
+        if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHolder = new ViewHolder();
             viewHolder.ago_text = (TextView) view.findViewById(R.id.ago_text);
@@ -66,28 +62,20 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> implements DragSortList
             viewHolder.fav_image = (ImageView) view.findViewById(R.id.fav_image);
 //			viewHolder.clip_image = (ImageView) view.findViewById(R.id.clip_image);
             view.setTag(viewHolder);
-        }
-        else
-        {
+        } else {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.ago_text.setText("一天前");
         viewHolder.time_text.setText(noteModel.getNoteTime());
-        if(noteModel.getNoteContent().length() > ConstantData.TITLE_LENGTH)
-        {
+        if (noteModel.getNoteContent().length() > ConstantData.TITLE_LENGTH) {
             viewHolder.summary_text.setText(noteModel.getNoteContent().substring(0, ConstantData.TITLE_LENGTH));
-        }
-        else
-        {
+        } else {
             viewHolder.summary_text.setText(noteModel.getNoteContent());
         }
-        if(noteModel.isFav())
-        {
+        if (noteModel.isFav()) {
             viewHolder.fav_image.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             viewHolder.fav_image.setVisibility(View.INVISIBLE);
         }
 
@@ -111,7 +99,7 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> implements DragSortList
         }
     }
 
-    class ViewHolder{
+    class ViewHolder {
         TextView ago_text;
         TextView time_text;
         ImageView fav_image;

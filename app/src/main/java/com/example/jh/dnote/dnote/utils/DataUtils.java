@@ -1,4 +1,4 @@
-package com.example.jh.dnote.dnote.data;
+package com.example.jh.dnote.dnote.utils;
 
 
 
@@ -7,7 +7,9 @@ import com.example.jh.dnote.dnote.model.NoteModel;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 这个工具类暂时没有被用到。
+ */
 public class DataUtils {
 	public static List<NoteModel> getExampleList()
 	{
