@@ -66,6 +66,7 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> implements DragSortList
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
+
         viewHolder.ago_text.setText("一天前");
         viewHolder.time_text.setText(noteModel.getNoteTime());
         if (noteModel.getNoteContent().length() > ConstantData.TITLE_LENGTH) {

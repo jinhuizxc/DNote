@@ -1,5 +1,8 @@
 package com.example.jh.dnote.dnote.model;
 
+/**
+ * 笔记的id
+ */
 public class NoteModel {
 	private int noteId;
 	private String noteTime;

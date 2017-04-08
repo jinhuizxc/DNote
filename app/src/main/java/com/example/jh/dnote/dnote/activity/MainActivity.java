@@ -46,6 +46,12 @@ import java.util.List;
  * 邮箱: 1004260403@qq.com
  *
  * 本demo并没有加入第三方库，具体如何实现的，就仔细体会各部分的代码实现吧】
+ *
+ * button按钮的阴影效果：
+ * android:shadowColor 阴影的颜色
+ * android:shadowDx 阴影的水平偏移量
+ * android:shadowDy 阴影的垂直偏移量
+ * android:shadowRadius 阴影的范围
  */
 public class MainActivity extends Activity {
 
@@ -135,7 +141,8 @@ public class MainActivity extends Activity {
         layout_info = (RelativeLayout) findViewById(R.id.layout_info);
         about_bg = findViewById(R.id.about_bg);
 
-        send_rl = (RelativeLayout) View.inflate(this, R.layout.send_dialog,
+        // 解析send_dialog_new 发送方式布局
+        send_rl = (RelativeLayout) View.inflate(this, R.layout.send_dialog_new,
                 null);
         delete_rl = (RelativeLayout) View.inflate(this, R.layout.delete_dialog,
                 null);
@@ -195,6 +202,7 @@ public class MainActivity extends Activity {
         } else {
             empty_note_view.setVisibility(View.VISIBLE);
         }
+        // 初始化适配器
         noteAdapter = new NoteAdapter(this, R.layout.list_notes_item, dataList);
         mController = buildController(dragSortListView);
         dragSortListView.setFloatViewManager(mController);
@@ -202,13 +210,12 @@ public class MainActivity extends Activity {
         dragSortListView.setDragEnabled(true);
 
 
-        //搜索框
+        //解析搜索框
         LinearLayout search = (LinearLayout) View.inflate(this,
-                R.layout.search, null);
+                R.layout.search_new, null);
         edittext_search = (EditText) search.findViewById(R.id.edittext_search);
         imageview_delete = (ImageView) search.findViewById(R.id.imageview_delete);
         imageview_delete.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 edittext_search.setText("");
@@ -216,6 +223,7 @@ public class MainActivity extends Activity {
         });
         edittext_search.addTextChangedListener(new TextWatcher() {
 
+            // 文本发生改变进行监听，根据字符串的长度不为空设置imageview_delete可见与不可见。
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String searchStr = s.toString();
@@ -225,6 +233,8 @@ public class MainActivity extends Activity {
                     imageview_delete.setVisibility(View.GONE);
                 }
                 List<NoteModel> newList = dNoteDB.searchNotesByStr(searchStr);
+                // 1.清空链表，（如果不清空链表输入的内容不是链表中的数据下方会显示给用户不好的体验）。
+                // 2.再添加链表，并刷新适配器
                 dataList.clear();
                 dataList.addAll(newList);
                 if (noteAdapter != null) {
