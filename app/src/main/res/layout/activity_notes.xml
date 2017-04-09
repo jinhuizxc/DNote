@@ -235,6 +235,7 @@
             </LinearLayout>
         </FrameLayout>
 
+        <!--tablayout-->
         <RelativeLayout
             android:id="@+id/relativelayout_title"
             android:layout_width="fill_parent"

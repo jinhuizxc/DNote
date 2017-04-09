@@ -125,6 +125,7 @@ public class MainActivity extends Activity {
         listPage();
     }
 
+    //
     private void initView() {
         dNoteDB = DNoteDB.getInstance(this);
         info_image = (ImageView) findViewById(R.id.info_image);
