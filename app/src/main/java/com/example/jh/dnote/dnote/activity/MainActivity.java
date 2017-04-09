@@ -79,6 +79,7 @@ public class MainActivity extends Activity {
     private ImageView delete_image;
     private ImageView send_image;
 
+    // 分享界面的ViewStub布局
     private ViewStub viewstub_about;
 
     private Animation bottom_in_anim, bottom_out_anim, fade_in, fade_in_300, fade_out,
@@ -123,7 +124,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes);
+        setContentView(R.layout.activity_notes_new);
         // 初始化组件
         initView();
         listPage();
@@ -146,15 +147,17 @@ public class MainActivity extends Activity {
         layout_info = (RelativeLayout) findViewById(R.id.layout_info);
         about_bg = findViewById(R.id.about_bg);
 
-        // 解析send_dialog_new 发送方式布局
+        // 解析send_dialog_new 发送方式布局，为什么要解析这个不在主界面的布局？这个便签只有一个activity，
+        // 所以要一次性解析出来布局，但是布局与布局间的跳转才是关键！
         send_rl = (RelativeLayout) View.inflate(this, R.layout.send_dialog_new,
                 null);
-        delete_rl = (RelativeLayout) View.inflate(this, R.layout.delete_dialog,
+        delete_rl = (RelativeLayout) View.inflate(this, R.layout.delete_dialog_new,
                 null);
         empty_note_view = (RelativeLayout) findViewById(R.id.empty_note_view);
         list_fl = (FrameLayout) findViewById(R.id.list_fl);
         edit_fl = (FrameLayout) findViewById(R.id.edit_fl);
         edittext_note = (EditText) findViewById(R.id.edittext_note);
+        //setOnFocusChangeListener  焦点事件,hasFocus:用来判断视图是否获得了焦点
         edittext_note.setOnFocusChangeListener(new OnFocusChangeListener() {
 
             @Override
@@ -536,6 +539,8 @@ public class MainActivity extends Activity {
         }, duration);
     }
 
+    // 编辑完成状态下：
+
     private void noteFinishState() {
         back_btn.setVisibility(View.VISIBLE);
         delete_image.setVisibility(View.VISIBLE);
@@ -546,7 +551,8 @@ public class MainActivity extends Activity {
         add_image.setVisibility(View.INVISIBLE);
         complete_text.setVisibility(View.INVISIBLE);
     }
-
+    // 在可编辑状态下：返回键、完成键 可见;
+    // 温馨提示、标题、添加文本、删除文本、发送文本 都不可见。
     private void noteEditState() {
         back_btn.setVisibility(View.VISIBLE);
         complete_text.setVisibility(View.VISIBLE);
