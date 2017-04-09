@@ -53,6 +53,10 @@ import java.util.List;
  * android:shadowDy 阴影的垂直偏移量
  * android:shadowRadius 阴影的范围
  */
+
+/**
+ * 红色的是新增加的类或者布局、蓝色的是修改项
+ */
 public class MainActivity extends Activity {
 
     /**
